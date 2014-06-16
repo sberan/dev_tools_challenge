@@ -1,0 +1,15 @@
+<html>
+
+  <head>
+    <script type="text/javascript" src="problems.js"></script>
+    <script type="text/javascript">
+       checkDone(function() {
+         return window.getComputedStyle(document.querySelector('#sometext')).backgroundColor != 'rgb(255, 0, 0)';
+       });
+    </script>
+  </head>
+
+  <body>
+    <div id="sometext" style="background-color: #FF0000">Change the background color of this box!</div>
+  </body>
+</html>

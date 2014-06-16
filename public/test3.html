@@ -1,0 +1,21 @@
+<html>
+
+  <head>
+    <script type="text/javascript" src="problems.js"></script>
+    <script type="text/javascript">
+       checkDone(function() {
+         return window.getComputedStyle(document.querySelector('#sometext')).backgroundColor != 'rgb(255, 0, 0)';
+       });
+    </script>
+
+    <style type="text/css">
+      .red {
+        background-color: #FF0000
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="sometext" class="red">Change the background color of this box using the CSS editor!</div>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+
+  <head>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="problems.js"></script>
+    <script type="text/javascript">
+
+      function loop() {
+        var q = "kvwycd nyxo!",
+            i;
+
+        for(i = 0; i < 100; i++) {
+          q = rot(q, 5);
+        }
+
+        alert('clicked!')
+      }
+    </script>
+
+  </head>
+
+  <body>
+    Take a look at the JavaScript that runs when you press this button:
+
+    <button onclick="loop()">Click me!</button>
+
+    When the variable "i" is 50, What is the value of the variable "q"?
+
+
+    <input type="text" id="answer">
+  </body>
+</html>

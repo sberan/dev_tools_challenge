@@ -1,0 +1,48 @@
+<html>
+
+  <head>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="problems.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        setTimeout(function() {
+          $('#doges').show()
+        }, 1500);
+      });
+    </script>
+
+    <style type="text/css">
+dt{ float: left; }
+dd{ float: left; }
+    </style>
+
+  </head>
+
+  <body>
+    Which of these images takes longest to load?
+
+    <dl id="doges" style="display:none">
+      <dt>doge1</dt>
+      <dd>
+        <img src="doge1.jpeg">
+      </dd>
+
+      <dt>doge2</dt>
+      <dd>
+        <img src="doge2.jpeg">
+      </dd>
+      
+      <dt>doge3</dt>
+      <dd>
+        <img src="doge3.jpeg">
+      </dd>
+
+      <dt>doge4</dt>
+      <dd>
+        <img src="doge4.jpeg">
+      </dd>
+    </dl>
+
+    <input type="text" id="answer">
+  </body>
+</html>

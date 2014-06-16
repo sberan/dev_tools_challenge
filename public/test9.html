@@ -1,0 +1,25 @@
+<html>
+
+  <head>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="problems.js"></script>
+    <script type="text/javascript">
+
+      var bak = console.log;
+      console.log = function(a) {
+        if(a == 'done!') {
+          //do some stuff (and obfuscate this!)
+          console.log('done!!');
+        }
+
+
+        bak.call(this, arguments);
+      }
+    </script>
+
+  </head>
+
+  <body>
+    using the "console.log" function, print "done!" to the console
+  </body>
+</html>
