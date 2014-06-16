@@ -1,0 +1,12 @@
+
+
+#sometext {
+  display: inline;
+  border: 2px solid #CCC;
+  padding:.5em;
+}
+
+button, input {
+  display:block;
+  margin: 1em;
+}

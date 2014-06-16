@@ -1,44 +1,19 @@
 <html>
 
   <head>
+    <link rel="stylesheet" type="text/css" href="problems.css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="problems.js"></script>
     <script type="text/javascript">
-      $(function() {
-        setTimeout(function() {
-          $('#doges').show()
-        }, 1500);
-      });
+      setInterval(function() {
+          $.get(atob('L2hlbGxv'), function() {})
+      }, 3000);
     </script>
-
-    <style type="text/css">
-      li {list-style-type: none; display:inline;}
-    </style>
-
   </head>
 
   <body>
-    What is the filename of the image that takes longest to load?
-
+    <h3>5. Network tab requests</h3>
+    What is the content of the response from the server for the 'hello' request being run in this page?
     <input type="text" id="answer">
-
-    <ul id="doges" style="display:none">
-      <li>
-        <img src="doge1.jpeg">
-      </li>
-
-      <li>
-        <img src="doge2.jpeg">
-      </li>
-      
-      <li>
-        <img src="doge3.jpeg">
-      </li>
-
-      <li>
-        <img src="doge4.jpeg">
-      </li>
-    </ul>
-
   </body>
 </html>

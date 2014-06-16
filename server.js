@@ -17,7 +17,7 @@ app.use(function(req, res, next) {
       return;
     }
   }
-  if(req.url == '/doge3.jpeg') {
+  if(req.url == '/doge3.jpeg' || req.query.t == 'y') {
     setTimeout(function() {
        res.setHeader('Cache-Control', 'no-cache, no-store, max-age=0');
        next();
