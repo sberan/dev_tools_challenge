@@ -41,9 +41,11 @@ var answerKey = {
   test2 : {answer: 'ok', next: 'test3.html'},
   test3 : {answer: 'ok', next: 'test4.html'},
   test4 : {answer: 'dev tools rocks!', next: 'test5.html'},
-  test5 : {answer: 'doge3.jpg', next: 'test6.html'},
+  test5 : {answer: 'doge3.jpeg', next: 'test6.html'},
   test6 : {answer: 'to_the_moon', next: 'test7.html'},
-  test7 : {answer: 'Iowa Hawkeyes', next: 'test8.html'}
+  test7 : {answer: 'Iowa Hawkeyes', next: 'test8.html'},
+  test8 : {answer: 'almost done!', next: 'test9.html'},
+  test9 : {answer: 'done!', next: 'complete.html'}
 };
 
 app.get('/check', function(req, res) {
@@ -57,8 +59,7 @@ app.get('/check', function(req, res) {
 });
 
 app.get('/', function(req,res) {
-  res.send("ok");
+  res.redirect("test1.html");
 });
+
 app.listen(process.env.PORT || 3000)
-
-
