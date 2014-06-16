@@ -1,9 +1,22 @@
-var express = require('express'),
-    app = express();
+var express = require('express')
+var session = require('cookie-session')
+
+var app = express();
+
+app.use(session({
+    keys: ['key1', 'key2'],
+    secureProxy: true // if you do SSL outside of node
+}))
+
 
 app.use(function(req, res, next) {
   console.log(req.url);
-  console.log(req.url, req.url == '/doge3.jpeg');
+  if(req.url.match(/^test.*/i) && req.url != '/test1.html') {
+    if(!req.session[req.url]) {
+      res.send(400, 'no cheating!');
+      return;
+    }
+  }
   if(req.url == '/doge3.jpeg') {
     setTimeout(function() {
        res.setHeader('Cache-Control', 'no-cache, no-store, max-age=0');
@@ -24,19 +37,24 @@ app.get('/hello', function(req, res) {
 })
 
 var answerKey = {
-  test4 : 'dev tools rocks!',
-  test5 : 'doge3',
-  test6 : 'to_the_moon',
-  test7 : 'Iowa Hawkeyes'
+  test1 : {answer: 'ok', next: 'test2.html'},
+  test2 : {answer: 'ok', next: 'test3.html'},
+  test3 : {answer: 'ok', next: 'test4.html'},
+  test4 : {answer: 'dev tools rocks!', next: 'test5.html'},
+  test5 : {answer: 'doge3.jpg', next: 'test6.html'},
+  test6 : {answer: 'to_the_moon', next: 'test7.html'},
+  test7 : {answer: 'Iowa Hawkeyes', next: 'test8.html'}
 };
 
 app.get('/check', function(req, res) {
-  if(answerKey[req.query.question] && answerKey[req.query.question] === req.query.answer) {
-    res.send('correct!')
+  var key = answerKey[req.query.question] ;
+  if(key && key.answer === req.query.answer) {
+    req.session[key.next] = true;
+    res.send(key.next)
   } else {
     res.send(400, 'incorrect!');
   }
-})
+});
 
 app.get('/', function(req,res) {
   res.send("ok");

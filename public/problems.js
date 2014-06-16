@@ -15,16 +15,30 @@ function rot(str, n) {
 
 function checkDone(pred) { 
   if(pageLoaded && pred()) {
-    console.log('done')
+    checkAnswer('ok');
   } else {
-    setTimeout(checkDone, 100, pred)
+    setTimeout(checkDone, 1000, pred)
   }
 }
 
 $(function() {
   $('input#answer').keyup(function(e) {
-    $.get('/check', {question: window.location.pathname.match(/\/(\w+)/)[1] , answer: event.target.value}, function(res) {
-      console.log(res);
-    });
+    checkAnswer(event.target.value);
   });
 });
+
+function checkAnswer(ans) {
+    $.ajax('/check', {
+        data: {question: window.location.pathname.match(/\/(\w+)/)[1] , answer: ans}, 
+        success: function(res) {
+          if(confirm('correct! continue to next question?')) {
+            window.location = res;
+          }
+        }, 
+        failure: function() {
+          //just means the answer is not correct yet
+        }
+    });
+}
+
+
