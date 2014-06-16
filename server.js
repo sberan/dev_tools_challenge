@@ -3,17 +3,18 @@ var session = require('cookie-session')
 
 var app = express();
 
+//WARNING: not secure! do not use in a real app!
 app.use(session({
     keys: ['key1', 'key2'],
-    secureProxy: true // if you do SSL outside of node
+    //secureProxy: true // if you do SSL outside of node
 }))
 
 
 app.use(function(req, res, next) {
   console.log(req.url);
-  if(req.url.match(/^test.*/i) && req.url != '/test1.html') {
+  if(req.url.match(/^\/test.*/i) && req.url != '/test1.html') {
     if(!req.session[req.url]) {
-      res.send(400, 'no cheating!');
+      res.send(400, 'no cheating! <a href="javascript:window.history.back()">Back</a>');
       return;
     }
   }
@@ -40,8 +41,8 @@ var answerKey = {
   test1 : {answer: 'ok', next: 'test2.html'},
   test2 : {answer: 'ok', next: 'test3.html'},
   test3 : {answer: 'ok', next: 'test4.html'},
-  test4 : {answer: 'dev tools rocks!', next: 'test5.html'},
-  test5 : {answer: 'doge3.jpeg', next: 'test6.html'},
+  test4 : {answer: 'doge3.jpeg', next: 'test5.html'},
+  test5 : {answer: 'dev tools rocks!', next: 'test6.html'},
   test6 : {answer: 'to_the_moon', next: 'test7.html'},
   test7 : {answer: 'Iowa Hawkeyes', next: 'test8.html'},
   test8 : {answer: 'almost done!', next: 'test9.html'},
@@ -51,7 +52,8 @@ var answerKey = {
 app.get('/check', function(req, res) {
   var key = answerKey[req.query.question] ;
   if(key && key.answer === req.query.answer) {
-    req.session[key.next] = true;
+    req.session['/' + key.next] = true;
+    console.log(req.session);
     res.send(key.next)
   } else {
     res.send(400, 'incorrect!');
