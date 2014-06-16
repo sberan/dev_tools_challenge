@@ -38,6 +38,9 @@ app.get('/check', function(req, res) {
   }
 })
 
+app.get('/', function(req,res) {
+  res.send("ok");
+});
 app.listen(3000)
 
 
